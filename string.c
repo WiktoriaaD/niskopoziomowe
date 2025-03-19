@@ -63,6 +63,19 @@ void pn_str_trim(char *str){
     }
 }
 
+void pn_str_rev(char *str){
+    if (str==NULL)
+    {
+        return;
+    }
+    int len=pn_str_len(str);
+    for(int i=0;i<pn_str_len(str)/2;i++){
+        char tmp=str[i];
+        str[i]=tmp;
+        str[i] = str[len-1-i];
+    }
+}
+
 int main(){
     printf("Podaj slowo: ");
     char str[100];
@@ -81,6 +94,10 @@ int main(){
     
     char wyraz[]="                           a ahalala   ";
     pn_str_trim(wyraz);
+    printf("%s",wyraz);
+    printf("\n");
+
+    pn_str_rev(wyraz);
     printf("%s",wyraz);
     printf("\n");
     return 0;
