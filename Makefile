@@ -1,18 +1,16 @@
-CC=gcc
-CFLAGS=-Wall -std=c11
-ASM = nasm
-OBJS=asmpow.o asmpow.c.o
-Target=potega
+CC = gcc
+OBJ = main.o dllist.o
 
-potega: $(OBJS)
-	$(CC) $(CFLAGS) -o potega $(OBJS)
+all: test
 
-asmpow.c.o: asmpow.c
-	$(CC) $(CFLAGS) -o asmpow.c.o -c asmpow.c
+test: $(OBJ)
+	$(CC) -o test $(OBJ)
 
-asmpow.o: asmpow.asm
-	$(ASM) -f elf64 asmpow.asm
+main.o: main.c dllist.h
+	$(CC) -o main.o -c main.c
 
-.PHONY: clean
-clean:
-	rm -f *.o potega
+dllist.o: dllist.c dllist.h
+	$(CC) -o dllist.o -c dllist.c
+
+
+
